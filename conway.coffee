@@ -51,7 +51,7 @@ class Conway
         @ctx.fillRect x * @xscale, y * @yscale, @xscale, @yscale
 
     drawState: () =>
-        @ctx.fillStyle = 'rgb(255, 255, 255)'
+        @ctx.fillStyle = 'rgba(255, 255, 255, 1.0)' # Rudimentary trails can be added by reducing the 1.0
         @ctx.fillRect 0, 0, @canvas.width, @canvas.height
 
         for [x, row] in enumerate(@state)
