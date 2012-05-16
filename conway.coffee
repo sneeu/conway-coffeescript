@@ -61,9 +61,7 @@ class Conway
 
 
 window.addEventListener 'load', () ->
-    size = [100, 100]
-    canvas = document.getElementById 'conway'
-    speed = document.getElementById 'speed'
+    @conway = new Conway document.getElementById('conway'), [100, 100]
 
     gliderGunOffset = [2, 2]
     gliderGun = """
@@ -78,11 +76,12 @@ window.addEventListener 'load', () ->
                 **
     """
 
-    @conway = new Conway canvas, size
     for [y, line] in enumerate(gliderGun.split '\n')
         for [x, c] in enumerate(line)
             if c == '*'
                 @conway.state[x + gliderGunOffset[0]][y + gliderGunOffset[1]] = 1
+
+    speed = document.getElementById 'speed'
 
     step = () ->
         @conway.drawState()
