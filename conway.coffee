@@ -45,17 +45,19 @@ class Conway
                     newState[x][y] = 1
         @state = newState
 
-    draw_point: (x, y, colour) =>
+    drawPoint: (x, y, colour) =>
         [x, y] = [parseInt(x), parseInt(y)]
         @ctx.fillStyle = colour
         @ctx.fillRect x * @xscale, y * @yscale, @xscale, @yscale
 
-    draw_state: () =>
+    drawState: () =>
+        @ctx.fillStyle = 'rgb(255, 255, 255)'
+        @ctx.fillRect 0, 0, @canvas.width, @canvas.height
+
         for [x, row] in enumerate(@state)
             for [y, p] in enumerate(row)
-                @draw_point(x, y, 'rgb(255, 255, 255)')
                 if p == 1
-                    @draw_point(x, y, 'rgb(0, 0, 0)')
+                    @drawPoint(x, y, 'rgb(0, 0, 0)')
 
 
 window.addEventListener 'load', () ->
@@ -83,7 +85,7 @@ window.addEventListener 'load', () ->
                 @conway.state[x + gliderGunOffset[0]][y + gliderGunOffset[1]] = 1
 
     step = () ->
-        @conway.draw_state()
+        @conway.drawState()
         @conway.step()
         setTimeout step, 2000 - speed.value
 
